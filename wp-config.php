@@ -19,6 +19,9 @@
  */
 
 // ** MySQL settings - You can get this info from your web host ** //
+define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/wordpress/lemonlock');
+define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] . '/wordpress/lemonlock');
+
 /** The name of the database for WordPress */
 define('DB_NAME', 'bears_lemonlock');
 
