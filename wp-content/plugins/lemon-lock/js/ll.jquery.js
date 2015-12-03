@@ -83,6 +83,9 @@
 
 	  	if( isCtrl ) {
 	  		e.preventDefault();
+
+	  		/* call popup */
+    		this.popupHandle();
   		}
 		
 		return true;
