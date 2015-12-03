@@ -33,7 +33,7 @@
 				<label class="lb-lemon-lock-adv"><strong><?php _e('Content Popup Advertisement','lemon-lock'); ?></strong></label>
 				<p>
 					<?php
-						$settings_content = array( 'media_buttons' => false,'textarea_name' => 'lemon_lock_popupadv' );
+						$settings_content = array( 'media_buttons' => true,'textarea_name' => 'lemon_lock_popupadv' );
 						wp_editor( get_option( 'lemon_lock_popupadv' ), 'lemon_lock_popupadv', $settings_content );
 					?>
 				</p>

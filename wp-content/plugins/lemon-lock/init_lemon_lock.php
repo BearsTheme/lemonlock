@@ -34,26 +34,26 @@ function add_backend_script_LemonLockAdv() {
 
 add_action('admin_enqueue_scripts', 'add_backend_script_LemonLockAdv');
 
+add_action('wp_enqueue_scripts', 'add_frontend_script_LemonLockAdv');
 function add_frontend_script_LemonLockAdv() {
-	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script('dynamics-lemon-lock-js',TB_JS.'dynamics.js', array( 'jquery' ) );
-	wp_enqueue_script('lemon-lock-js',TB_JS.'ll.jquery.js', array( 'jquery' ) );
-	wp_enqueue_style('lemonlock_css', TB_CSS . 'lemonlock.css');
-	wp_enqueue_script('lemon-lock-js-run',TB_JS.'lemonlock.js', array( 'jquery' ) );
-	wp_localize_script( 'lemon-lock-js-run', 'lockAdminObj', 
-			array( 
-				'lemonlockCopy' 		=> (get_option('lemon_lock_copy') == "yes") ? true : false,
-				'lemonlockRightmouse' 	=> (get_option('lemon_lock_rightmouse') == "yes") ? true : false,
-				'lemonlockDebug' 		=> (get_option('lemon_lock_debug') == "yes") ? true : false,
-				'lemonlockControladv' 	=> (get_option('lemon_lock_controladv') == "1") ? true : false,
-				'lemonlockPopupadv' 	=> get_option('lemon_lock_popupadv')
-				) 
-			);
-
+	if ( ! is_admin() ) {
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script('dynamics-lemon-lock-js',TB_JS.'dynamics.js', array( 'jquery' ) );
+		wp_enqueue_script('lemon-lock-js',TB_JS.'ll.jquery.js', array( 'jquery' ) );
+		wp_enqueue_style('lemonlock_css', TB_CSS . 'lemonlock.css');
+		wp_enqueue_script('lemon-lock-js-run',TB_JS.'lemonlock.js', array( 'jquery' ) );
+		wp_localize_script( 'lemon-lock-js-run', 'lockAdminObj', 
+				array( 
+					'lemonlockCopy' 		=> (get_option('lemon_lock_copy') == "yes") ? true : false,
+					'lemonlockRightmouse' 	=> (get_option('lemon_lock_rightmouse') == "yes") ? true : false,
+					'lemonlockDebug' 		=> (get_option('lemon_lock_debug') == "yes") ? true : false,
+					'lemonlockControladv' 	=> (get_option('lemon_lock_controladv') == "1") ? true : false,
+					'lemonlockPopupadv' 	=> get_option('lemon_lock_popupadv')
+					) 
+				);
+    }
    
 }
-
-add_action('wp_enqueue_scripts', 'add_frontend_script_LemonLockAdv');
 
 add_action( 'admin_menu', 'registerLemonLockAdv_MenuPage' );
 function registerLemonLockAdv_MenuPage() {
@@ -84,4 +84,5 @@ function lemon_lock_adv_Settings() {
 	register_setting('lemon_lock_adv_option', 'lemon_lock_popupadv');
 
 }
+
 
